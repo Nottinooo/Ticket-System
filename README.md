@@ -49,7 +49,7 @@ Before you get started, ensure you have the following:
 ### 🚀 Getting Started  
 1. Clone this repository:
    ```bash
-   git clone git clone https://github.com/Nottinooo/Ticket-System.git
+   git clone https://github.com/Nottinooo/Ticket-System.git
    cd Ticket-System
    ```
 
