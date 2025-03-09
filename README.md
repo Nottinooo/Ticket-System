@@ -195,7 +195,7 @@ We welcome contributions to the Ticket Bot! To contribute:
 ---
 
 ## **📜 License**
-The Ticket Bot is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
+The Ticket Bot is licensed under the **GPL 3.0**. See the [LICENSE](LICENSE) file for more details.
 
 ---
 
