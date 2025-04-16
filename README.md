@@ -1,209 +1,212 @@
 # **🎟️ Ticket Bot Documentation 📄**
 
-Welcome to the official documentation for the **Ticket Bot**! 🎉 This bot is designed to make managing support tickets on Discord easy, efficient, and aesthetically pleasing. Below, you'll find everything you need to set up, host, and maintain the bot. Let's dive in! 🚀
-
----
+Welcome to the official documentation for the **Ticket Bot**! 🎉  
+This bot is built to streamline your Discord server’s support system with structured ticket creation, automatic transcripts, multilingual support, and complete moderation features. Let’s dive in and make support efficient and beautiful! 🚀
 
 ## **📚 Table of Contents**
-1. [🌟 Features](#features)
-2. [📋 Requirements](#requirements)
-3. [🛠️ Installation](#installation)
-4. [⚙️ Configuration](#configuration)
-5. [🌐 Hosting Options](#hosting-options)
-6. [🐍 Python Version Compatibility](#python-version-compatibility)
-7. [📦 Dependencies](#dependencies)
-8. [🚀 Usage](#usage)
-9. [🔧 Troubleshooting](#troubleshooting)
-10. [🤝 Contributing](#contributing)
-11. [📜 License](#license)
-
----
+1. [🌟 Features](#features)  
+2. [📋 Requirements](#requirements)  
+3. [🛠️ Installation](#installation)  
+4. [⚙️ Configuration](#configuration)  
+5. [🗂️ Ticket Categories & Questions](#ticket-categories--questions)  
+6. [🌐 Hosting Options](#hosting-options)  
+7. [🐍 Python Compatibility](#python-compatibility)  
+8. [📦 Dependencies](#dependencies)  
+9. [🚀 Usage Guide](#usage-guide)  
+10. [🛠️ Admin Tools & Commands](#admin-tools--commands)  
+11. [🔧 Troubleshooting](#troubleshooting)  
+12. [🤝 Contributing](#contributing)  
+13. [📜 License](#license)  
+14. [💬 Support](#support)
 
 ## **🌟 Features**
-- **🎫 Ticket Creation**: Users can open tickets by selecting a category from a dropdown menu.
-- **🔄 Persistent Views**: Buttons and panels remain functional even after bot restarts.
-- **📜 Transcripts**: Full conversation logs are saved and sent to a designated channel and the user.
-- **✅ Claiming Tickets**: Staff members can claim tickets to take ownership.
-- **✏️ Renaming Tickets**: Staff members can rename tickets for better organization.
-- **🔒 Closing Tickets**: Tickets can be closed with an optional reason.
-- **⏳ Inactivity Timeout**: Tickets are automatically closed after a period of inactivity.
-- **🎨 Custom Embeds**: Beautiful and customizable embeds for all messages.
 
----
+- 🎫 **Category-Based Tickets**: Users select from dropdown categories with custom questions.
+- ✨ **Unique Ticket IDs**: Every ticket gets a unique 5-char ID (e.g. `B1A4C`), persistent across renames.
+- 📜 **Transcript System**: Complete transcripts sent to both user & staff channels, with claim/rename info.
+- ✅ **Claim System**: Staff can claim tickets, which updates the name and logs the claimer.
+- ✏️ **Rename System**: Tickets can be renamed with slash command or modal, with cooldown and logging.
+- 🔒 **Close System**: Tickets are closed with a modal reason, and full info is logged.
+- 🌍 **Multi-language Support**: Users choose between 🇬🇧 English and 🇮🇹 Italian support.
+- ⏳ **Auto-Close for Inactivity**: Tickets without messages for `INACTIVE_TIMEOUT` hours are auto-closed.
+- 📂 **Role-based Access**: Only specific roles can view certain ticket types.
+- 🔁 **Persistent Views**: Buttons and dropdowns stay registered even after bot restart.
+- 🖼️ **Custom Embed Styling**: Logos, colors, and footers fully customizable.
 
 ## **📋 Requirements**
-To run the Ticket Bot, you need the following:
-- **Python 3.8 or higher** 🐍.
-- A **Discord bot token** from the [Discord Developer Portal](https://discord.com/developers/applications) 🔑.
-- A **Discord server** where you have administrative permissions 🛡️.
-- Basic knowledge of Python and Discord bot development 🧠.
+You’ll need:
 
----
+- ✅ Python 3.8 or higher  
+- ✅ A Discord bot token from the [Discord Developer Portal](https://discord.com/developers/applications)  
+- ✅ Your server ID and channel/category IDs  
+- ✅ Basic Python knowledge  
+- ✅ Permissions to manage channels, messages, and roles
 
 ## **🛠️ Installation**
-Follow these steps to set up the Ticket Bot on your local machine or hosting service.
 
 ### **Step 1: Clone the Repository**
-Clone the repository to your local machine or server:
 ```bash
-git clone https://github.com/Nottinooo/Ticket-System.git
-cd Ticket-System
+git clone https://github.com/yourusername/ticket-bot.git
+cd ticket-bot
 ```
 
-### **Step 2: Install Dependencies**
-Install the required Python packages using `pip`:
+### **Step 2: Install Python Dependencies**
 ```bash
 pip install discord.py
 ```
 
 ### **Step 3: Configure the Bot**
-1. Open the `main.py` file.
-2. Replace the following placeholders with your actual values:
-   ```python
-   TOKEN = "YOUR_DISCORD_BOT_TOKEN"
-   GUILD_ID = 123456789012345678  # Replace with your server ID
-   TRANSCRIPT_CHANNEL_ID = 123456789012345678  # Replace with your transcript channel ID
-   CLAIM_ROLE_ID = 123456789012345678  # Replace with your claim role ID
-   ```
+In `main.py` or `ticket.py`, modify the following:
+```python
+TOKEN = "YOUR_BOT_TOKEN"
+GUILD_ID = 1234567890
+TRANSCRIPT_CHANNEL_ID = 1234567890
+CLAIM_ROLE_ID = 1234567890
+VOICE_CHANNEL_ID = 1234567890
+NOTIFICATION_CHANNEL_ID = 1234567890
+INACTIVE_TIMEOUT = 24
+```
 
 ### **Step 4: Run the Bot**
-Start the bot using the following command:
 ```bash
 python main.py
 ```
 
----
-
 ## **⚙️ Configuration**
-The bot can be customized by modifying the following variables in the code:
 
-### **Bot Settings**
-| Variable               | Description                                                                 |
-|------------------------|-----------------------------------------------------------------------------|
-| `TOKEN`                | Your Discord bot token.                                                     |
-| `GUILD_ID`             | The ID of your Discord server.                                              |
-| `TRANSCRIPT_CHANNEL_ID`| The ID of the channel where transcripts will be sent.                       |
-| `CLAIM_ROLE_ID`        | The ID of the role allowed to claim tickets.                                |
+### **Bot Environment Variables**
+| Variable                   | Description                                                  |
+|----------------------------|--------------------------------------------------------------|
+| `TOKEN`                    | Your Discord bot token                                       |
+| `GUILD_ID`                 | Discord server ID                                            |
+| `TRANSCRIPT_CHANNEL_ID`    | Channel where transcripts are sent                           |
+| `CLAIM_ROLE_ID`            | Staff role allowed to claim and rename tickets               |
+| `INACTIVE_TIMEOUT`         | Hours before a ticket is closed automatically                |
+| `VOICE_CHANNEL_ID`         | Voice channel ID used for support pings                      |
+| `NOTIFICATION_CHANNEL_ID`  | Channel where the bot notifies staff of users in VC          |
 
-### **Inactivity Timeout**
-You can adjust the inactivity timeout (in hours) by modifying the `INACTIVE_TIMEOUT` variable:
-```python
-INACTIVE_TIMEOUT = 24  # Timeout in hours
-```
+## **🗂️ Ticket Categories & Questions**
 
-### **Ticket Categories**
-You can customize the ticket categories by modifying the `TICKET_CATEGORIES` dictionary:
+You can configure ticket types and their forms using the `TICKET_CATEGORIES` dictionary:
+
 ```python
 TICKET_CATEGORIES = {
-    "🛠️ Support": 123456789012345678,  # Replace with your category ID
-    "🚨 Report": 123456789012345678,   # Replace with your category ID
-    "🤝 Partner": 123456789012345678   # Replace with your category ID
+    "🎫 Category 1": {
+        "id": 1234567890,
+        "roles": [USER_ROLE_ID],
+        "color": discord.Color.green(),
+        "emoji": "🎫",
+        "questions": [
+            "Answer 1",
+            "Answer 2",
+            "Answer 3",
+            "Answer 4",
+            "Answer 5"
+        ]
+    },
+    "📢 Category 2": { ... },
+    "🔐 Category 3": { ... }
 }
 ```
 
----
+Each category:
+- Can have **up to 10 questions**
+- Displays **5 at a time** in modals
+- Defines which roles can open tickets in that category
 
 ## **🌐 Hosting Options**
-You can host the Ticket Bot on various platforms. Below are some recommended options:
 
-### **1. Local Machine**
-- **Pros**: Easy to set up and test.
-- **Cons**: Requires your machine to be always on.
+| Platform             | Pros                                | Cons                                |
+|----------------------|--------------------------------------|-------------------------------------|
+| **Local Machine**    | Easy to test, quick to start         | Must stay online                    |
+| **VPS**              | Full control, scalable               | Requires setup & sysadmin skills    |
+| **Cloud Services**   | (Heroku, GCP, AWS)                   | Managed hosting                     | Might be costly                     |
+| **Pterodactyl**      | [Free panel hosting](https://pterodactyl.io) | Bot-oriented environment            | Limited UI                          |
+| **DisCloud**         | Quick bot deployment                 | Less customization                  |
 
-### **2. VPS (Virtual Private Server)**
-- **Recommended Providers**: DigitalOcean, Linode, Vultr.
-- **Pros**: Full control over the environment.
-- **Cons**: Requires technical knowledge to set up.
+> 🔧 Need hosting? Try [nothosting.it](https://www.nothosting.it) 💙
 
-### **3. Cloud Hosting**
-- **Recommended Providers**: Heroku, Google Cloud, AWS.
-- **Pros**: Scalable and reliable.
-- **Cons**: Can be expensive for high traffic.
+## **🐍 Python Compatibility**
 
-### **4. Dedicated Bot Hosting**
-- **Recommended Providers**: [Pterodactyl](https://pterodactyl.io/), [DisCloud](https://discloudbot.com/).
-- **Pros**: Optimized for bot hosting.
-- **Cons**: Limited customization.
-- *Ps*: If you want you can easly host your bot on my own [hosting](https://mp.romandev.it)
-
----
-
-## **🐍 Python Version Compatibility**
-The Ticket Bot is compatible with the following Python versions:
-
-| Python Version | Supported |
-|----------------|-----------|
-| 3.8            | ✅         |
-| 3.9            | ✅         |
-| 3.10           | ✅         |
-| 3.11           | ✅         |
-| 3.12           | ✅         |
-
----
+| Version   | Status |
+|-----------|--------|
+| 3.8       | ✅     |
+| 3.9       | ✅     |
+| 3.10      | ✅     |
+| 3.11      | ✅     |
+| 3.12      | ✅     |
 
 ## **📦 Dependencies**
-The bot relies on the following Python packages:
 
-| Package         | Version | Description                          |
-|-----------------|---------|--------------------------------------|
-| `discord.py`    | 2.3.2   | The core library for interacting with Discord. |
+| Package       | Version | Description                      |
+|---------------|---------|----------------------------------|
+| `discord.py`  | 2.3.2   | Python wrapper for Discord API   |
 
-You can install the dependencies using:
+Install with:
 ```bash
 pip install discord.py
 ```
 
----
+## **🚀 Usage Guide**
 
-## **🚀 Usage**
-Once the bot is running, you can use the following commands:
+### 🎫 `/ticketpanel`
+Creates a dropdown ticket panel. Users select a category, fill out a modal form, choose language, and the bot creates a private ticket channel.
 
-### **1. Create a Ticket Panel**
-Use the `/ticketpanel` command to create a ticket panel in your server. Users can select a category to open a ticket.
+### ✅ Claim Button
+Staff can claim a ticket. It renames the channel and logs the claimer with timestamp.
 
-### **2. Manage Tickets**
-- **Claim a Ticket**: Click the `✅ Claim` button to take ownership of a ticket.
-- **Rename a Ticket**: Click the `✏️ Rename` button to change the ticket's name.
-- **Close a Ticket**: Click the `🔒 Close` button to close the ticket.
+### ✏️ Rename
+Staff can:
+- Click Rename button
+- Or use `/rename-ticket <new_name>`  
+Includes 60-second cooldown and logging.
 
-### **3. View Transcripts**
-Transcripts are automatically sent to the designated transcript channel and the user who opened the ticket.
+### 🔒 Close
+Click "Close" and fill a modal with the reason. The bot:
+- Sends a transcript to the user and staff
+- Deletes the channel
+- Logs claimers, renames, category, duration
 
----
+### 🕐 Inactivity Auto-Close
+Tickets with no new messages for `INACTIVE_TIMEOUT` hours are closed automatically and logged.
+
+## **🛠️ Admin Tools & Commands**
+
+| Command             | Description                                 |
+|---------------------|---------------------------------------------|
+| `/ticketpanel`      | Creates ticket selection panel              |
+| `/rename-ticket`    | Renames a ticket channel (Staff only)       |
+| `!help`             | Displays help/status message (customizable) |
 
 ## **🔧 Troubleshooting**
-### **1. Bot Not Responding**
-- Ensure the bot has the necessary permissions in your server.
-- Check if the bot is online and running.
 
-### **2. Buttons Not Working After Restart**
-- Ensure you have registered the views using `bot.add_view()`.
-- Verify that all buttons have a unique `custom_id`.
-
-### **3. Transcripts Not Sending**
-- Check if the `TRANSCRIPT_CHANNEL_ID` is correct.
-- Ensure the bot has permission to send messages in the transcript channel.
-
----
+| Issue                                | Fix                                                         |
+|--------------------------------------|--------------------------------------------------------------|
+| Buttons don't work after restart     | Ensure `bot.add_view()` is used in `on_ready()`             |
+| Transcripts not received             | Check `TRANSCRIPT_CHANNEL_ID` and permissions               |
+| Tickets not closing                  | Make sure close modal returns a message                     |
+| Duplicate IDs                        | Delete `ticket_log.json` to regenerate the ID pool          |
+| Panel doesn’t show up                | Check if your slash commands are synced                     |
 
 ## **🤝 Contributing**
-We welcome contributions to the Ticket Bot! To contribute:
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Submit a pull request with a detailed description of your changes.
 
----
+We 💙 contributions!
+
+1. Fork the repo  
+2. Make your changes  
+3. Submit a Pull Request with a detailed explanation
 
 ## **📜 License**
-The Ticket Bot is licensed under the **GPL 3.0**. See the [LICENSE](LICENSE) file for more details.
 
----
+Licensed under the **GNU General Public License v3.0 (GPL-3.0)**  
+See the `LICENSE` file for full legal terms.
 
 ## **💬 Support**
-For additional help, feel free to ask me, if you want on discord **flexin_roman** or instagram (same username)
 
----
+Need help or want to suggest something?
 
-Thank you for using the **Ticket Bot**! 🎉 We hope it makes managing your server's support system a breeze. 🚀
+- 💬 Discord: `flexin_roman`  
+- 📸 Instagram: [@flexin_roman](https://instagram.com/flexin_roman)
 
----
+Thanks for using the **Ticket Bot** — built for support teams that care.  
+From creation to closure, every step is handled beautifully. 🎟️
