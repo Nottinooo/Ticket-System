@@ -46,7 +46,12 @@ You’ll need:
 
 ### **Step 1: Clone the Repository**
 ```bash
+(ONLY FORKED)
 git clone https://github.com/yourusername/ticket-bot.git
+cd ticket-bot
+
+IF NOT FORKED
+git clone https://github.com/Nottinooo/ticket-bot.git
 cd ticket-bot
 ```
 
