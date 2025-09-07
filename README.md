@@ -1,3 +1,4 @@
+# **```⚠️THIS PROJECT IS DISCONTINUED! PLEASE FOLLOW THE NEWEST ONE!⚠️```**
 # **🎟️ Ticket Bot Documentation 📄**
 
 Welcome to the official documentation for the **Ticket Bot**! 🎉  
